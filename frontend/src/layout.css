@@ -1,0 +1,57 @@
+/* Global styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    background-color: #282c34; /* Fallback color */
+}
+
+.webgl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the content horizontally */
+    height: 100vh;
+    position: relative;
+    font-family: 'Cabin', sans-serif;
+    color: #ffeded;
+    text-transform: uppercase;
+    font-size: 8vmin;
+    padding: 0 10%;
+}
+
+.effect {
+    text-align: center;
+}
+
+.section h1, .section h2 {
+    font-size: 10vmin;
+    margin: 0; 
+}
+
+.section h3, .section h4, section h5 {
+
+    font-size: 5vmin;
+    margin: 0;
+    
+
+}
+
+
+.section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Darken the background for better readability */
+    z-index: -1;
+}

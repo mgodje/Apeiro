@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}
+
+
+
+/* Horizontal layout for the sections */
+.horizontal-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.horizontal-item {
+    flex: 1;
+    text-align:center;
+    padding: 20px;
+    border: 1px solid #fff;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+/* Basic reset and setup */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #282c34;
+    color: white;
+}
+
+.section {
+    padding: 20px;
+    text-align: center;
+}
+
+.horizontal-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.horizontal-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 10px solid #0077ff; /* Border color and thickness */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #333; /* Background color inside the border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    width: 200px; /* Fixed width for consistency */
+    margin: 10px; /* Space between items */
+}
+
+.horizontal-item h3, .horizontal-item h4, .horizontal-item h5 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 45px;
+}
+
+.horizontal-item p {
+    margin-top: 10px;
+    font-size: 10px;
+    color: #ddd;
+}
+
+
+.horizontal-item:nth-child(1) {
+    border-color: #867c7c; /* Red border for Create */
+    border-width: 4px;
+}
+
+.horizontal-item:nth-child(2) {
+    border-color: #867c7c; /* Green border for Imagine */
+    border-width: 4px;
+}
+
+.horizontal-item:nth-child(3) {
+    border-color: #867c7c; /* Blue border for Choose */
+    border-width: 4px;
+}
+
+.horizontal-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+
+
