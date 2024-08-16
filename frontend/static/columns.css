@@ -46,9 +46,19 @@ body, html {
 }
 
 .section {
-    padding: 20px;
+    padding: 0px;
     text-align: center;
 }
+
+.effect {
+    margin-top: -70px; 
+}
+
+h1.typing {
+    margin-bottom: 30px; 
+}
+
+
 
 .horizontal-container {
     display: flex;

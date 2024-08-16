@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
-    background-image: url('../images/forest.png');
+    background-image: url('./images/forest.png');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

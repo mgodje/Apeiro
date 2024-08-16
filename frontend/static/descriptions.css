@@ -7,27 +7,6 @@
     padding: 20px 0;
 }
 
-/* 
-.horizontal-item2 {
-    flex: 1;
-    text-align:center;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-} */
-
-
-
-/* .section {
-    padding: 10px;
-    text-align: center;
-} */
-
-/* .horizontal-container2 {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px 0;
-} */
 
 .horizontal-item2 {
     display: flex;
@@ -49,12 +28,5 @@
     font-size: 20px;
 }
 
-
-/* 
-.horizontal-item2:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-} */
 
 
