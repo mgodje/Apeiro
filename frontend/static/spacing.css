@@ -1,0 +1,30 @@
+/* Existing styles */
+section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+}
+
+
+/* Horizontal layout for the sections */
+.horizontal-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1500px;
+    margin-top: -900px; /* Reduce space between "How to Play" and the horizontal sections */
+}
+
+.horizontal-item {
+    flex: 1;
+    text-align: center;
+    padding: 25px;
+    border: 1px solid #fff;
+    margin: 10px;
+    border-radius: 40px;
+}

@@ -1,0 +1,6 @@
+.horizontal-item2 img {
+    max-width: 100%; /* Ensure the GIF doesn't exceed the width of the container */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 10px; /* Optional: make the GIF have rounded corners */
+    margin-bottom: 10px; /* Space between the GIF and the text */
+}
