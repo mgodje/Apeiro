@@ -1,9 +1,5 @@
 import * as THREE from 'three'
-import GUI from 'lil-gui'
-import gsap from 'gsap'
-
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
+import { GUI } from 'lil-gui'
 
 /**
  * Debug
@@ -83,6 +79,9 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 3)
 directionalLight.position.set(1, 1, 0)
 scene.add(directionalLight)
 
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+scene.add(ambientLight)
+
 // Particles
 
 // geometry
@@ -91,7 +90,7 @@ const positions = new Float32Array(particlesCount * 3)
 
 for (let i = 0; i < particlesCount; i++) {
     positions[i * 3] = (Math.random() - 0.5) * 10
-    positions[i * 3 + 1] = objectsDistance * 0.5 - Math.random() * objectsDistance * sectionMeshes.length
+    positions[i * 3 + 1] = 4 * 0.5 - Math.random() * 4 * sectionMeshes.length
     positions[i * 3 + 2] = (Math.random() - 0.5) * 10
 }
 
@@ -197,7 +196,7 @@ const tick = () =>
     previousTime = elapsedTime
 
     // animate camera
-    camera.position.y = - scrollY / sizes.height * objectsDistance
+    camera.position.y = - scrollY / sizes.height * 4
 
     const parallelxX = cursor.x * 0.5
     const parallelxY = -cursor.y * 0.5
