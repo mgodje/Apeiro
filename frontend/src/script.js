@@ -8,6 +8,7 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 /**
  * Debug
  */
+
 const gui = new GUI()
 
 const parameters = {
@@ -28,6 +29,7 @@ gui
  * Base
  */
 // Canvas
+
 const canvas = document.querySelector('canvas.webgl')
 
 // Scene
@@ -37,7 +39,7 @@ const scene = new THREE.Scene()
 
 // textures
 const textureLoader = new THREE.TextureLoader()
-const gradientTexture = textureLoader.load('./textures/gradients/3.jpg')
+const gradientTexture = textureLoader.load('/textures/gradients/3.jpg')
 gradientTexture.magFilter = THREE.NearestFilter
 
 // material
@@ -78,18 +80,34 @@ for (let i = 0; i < particlesCount; i++) {
 const particlesGeometry = new THREE.BufferGeometry();
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
+const particlesGeometry1 = new THREE.BufferGeometry();
+particlesGeometry1.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
 // Particle Material
 const particlesMaterial = new THREE.PointsMaterial({
     size: 0.05,
-    color: 0xffffff,
+    color: 0x7CDFDC,
     sizeAttenuation: true,
     transparent: true,
     opacity: 0.8,
 });
 
+const particlesMaterial1 = new THREE.PointsMaterial({
+    size: 0.05,
+    color: 0xFAD8AB,
+    sizeAttenuation: true,
+    transparent: true,
+    opacity: 0.8,
+});
+
+
+
 // Create Points
 const particles = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particles);
+
+const particles1 = new THREE.Points(particlesGeometry1, particlesMaterial1);
+scene.add(particles1);
 
 
 /**
@@ -223,6 +241,7 @@ const tick = () => {
 
     // Animate particles by rotating them around the Y-axis
     particles.rotation.y += 0.01 * deltaTime;
+    particles1.rotation.y += 0.02 * deltaTime;
 
     // Render the scene
     renderer.render(scene, camera);
