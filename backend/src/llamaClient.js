@@ -5,21 +5,15 @@ const scenes = []
  * Parse the given decisions
  */
 function parseDecisions() {
-  let regex = /\(\d\)\s([^.]+)\./g;
+  const regex = /\d.\s(.+)/g;
   const decisions = [];
   let match;
-
-  while ((match = regex.exec(scenes[1][0].scene)) !== null) {
-    decisions.push(match[1].trim());
+  let i = 1;
+  const scene = scenes.find(scene => scene.decisions == null).scene;
+  while ((match = regex.exec(scene)) !== null) {
+    decisions.push(`${i}. ${match[1].trim()}`);
+    i++;
   }
-  if (decisions.length != 0) {
-    return decisions;
-  }
-  regex = /(\d\.)\s([^.]+)\./g;
-  while ((match = regex.exec(scenes[1][0].scene)) !== null) {
-    decisions.push(match[1].trim());
-  }
-  // const results = scenes.find(element => elemen)
   return decisions;
 }
 
@@ -42,13 +36,31 @@ function findLatestValue() {
 }
 
 /**
+ * Picks the decision based on the number
+ * 
+ * @param {int} number The number of the decision
+ * @returns {string} Picked decision
+ */
+function pickDecision(number) {
+  const scene = scenes.find(scene => scene.pickedDecision == null);
+  const picked = scene.decisions[number-1];
+  scene.pickedDecision = picked;
+  console.log(scene);
+  return scene.pickedDecision;
+}
+
+/**
  * Adds current scene to a dictionary
  * 
  * @param {*} data
  */
 function addScene(data) {
   const key = findLatestValue() + 1;
-  scenes.push({number: key, scene: data, decision: null})
+  scenes.push({number: key, scene: data, decisions: null, pickedDecision: null});
+  const parsedDecisions = parseDecisions();
+  const scene = findLatestScene();
+  scene.decisions = parsedDecisions;
+  return scene;
 }
 
 
@@ -63,8 +75,10 @@ function createStory(userPrompt) {
     through an adventure using this sentence/words: ${userPrompt}.
     Talk in 3rd person and only refer to the user as 'You'.
     Only produce 4 decisions. Format the output where before you produce the decisions, 
-    state this: Here are your options: (1: decision. 2: decision. etc.). End each decision with a period.`
-  } 
+    state this: Here are your options: 1. decision. 2. decision. etc.). End each decision with a period.
+    Remember that you must produce decisions.
+    `
+  }
   fetch(url, {
     method: 'POST',
     headers: {
@@ -75,13 +89,13 @@ function createStory(userPrompt) {
   .then(response => response.json())
   .then(result => {
     addScene(result["response"]);
-    console.log(scenes);
-    console.log(findLatestScene());
+    pickDecision(1);
+    // console.log(findLatestScene());
     // const decisions = parseDecisions();
     // console.log(decisions);
   })
   .catch(error => {
-      console.error('error:', error);
+    console.error('error:', error);
   });
 }
 
