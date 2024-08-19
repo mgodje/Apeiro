@@ -1,5 +1,5 @@
 const url = 'https://muddy-cake-db91.patrick-1.workers.dev/';
-const scenes = {}
+const scenes = []
 
 /**
  * Parse the given decisions
@@ -19,6 +19,7 @@ function parseDecisions() {
   while ((match = regex.exec(scenes[1][0].scene)) !== null) {
     decisions.push(match[1].trim());
   }
+  // const results = scenes.find(element => elemen)
   return decisions;
 }
 
@@ -28,9 +29,7 @@ function parseDecisions() {
  * @returns {object} Latest Scene
  */
 function findLatestScene() {
-  const keys = Object.keys(scenes);
-  const latestValue = keys[keys.length-1];
-  return scenes[latestValue];
+  return scenes.find(scene => scene.number === findLatestValue());
 }
 
 /**
@@ -39,8 +38,7 @@ function findLatestScene() {
  * @returns {number} Latest Value
  */
 function findLatestValue() {
-  const keys = Object.keys(scenes);
-  return keys[keys.length-1];
+  return scenes.length;
 }
 
 /**
@@ -48,14 +46,11 @@ function findLatestValue() {
  * 
  * @param {*} data
  */
-function addContext(data) {
-  if (Object.keys(scenes).length === 0) {
-    scenes[1] = [{scene: data, decision: null}];
-    return;
-  }
-  const latestValue = findLatestScene();
-  scenes[latestValue+1] = [{scene: data, decision: null}];
+function addScene(data) {
+  const key = findLatestValue() + 1;
+  scenes.push({number: key, scene: data, decision: null})
 }
+
 
 /**
  * Creates the initial story
@@ -79,10 +74,11 @@ function createStory(userPrompt) {
   })
   .then(response => response.json())
   .then(result => {
-    addContext(result["response"]);
+    addScene(result["response"]);
     console.log(scenes);
-    const decisions = parseDecisions();
-    console.log(decisions);
+    console.log(findLatestScene());
+    // const decisions = parseDecisions();
+    // console.log(decisions);
   })
   .catch(error => {
       console.error('error:', error);
