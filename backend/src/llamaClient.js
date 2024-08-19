@@ -2,6 +2,27 @@ const url = 'https://muddy-cake-db91.patrick-1.workers.dev/';
 const scenes = {}
 
 /**
+ * Parse the given decisions
+ */
+function parseDecisions() {
+  let regex = /\(\d\)\s([^.]+)\./g;
+  const decisions = [];
+  let match;
+
+  while ((match = regex.exec(scenes[1][0].scene)) !== null) {
+    decisions.push(match[1].trim());
+  }
+  if (decisions.length != 0) {
+    return decisions;
+  }
+  regex = /(\d\.)\s([^.]+)\./g;
+  while ((match = regex.exec(scenes[1][0].scene)) !== null) {
+    decisions.push(match[1].trim());
+  }
+  return decisions;
+}
+
+/**
  * Find the latest scene
  * 
  * @returns {object} Latest Scene
@@ -47,8 +68,7 @@ function createStory(userPrompt) {
     through an adventure using this sentence/words: ${userPrompt}.
     Talk in 3rd person and only refer to the user as 'You'.
     Only produce 4 decisions. Format the output where before you produce the decisions, 
-    state this: Here are your options: (1: decision, 2: decision, etc.). 
-    After you produce all the decisions, end the sentence and don't say anything else.`
+    state this: Here are your options: (1: decision. 2: decision. etc.). End each decision with a period.`
   } 
   fetch(url, {
     method: 'POST',
@@ -60,7 +80,9 @@ function createStory(userPrompt) {
   .then(response => response.json())
   .then(result => {
     addContext(result["response"]);
-    console.log(result["response"]);
+    console.log(scenes);
+    const decisions = parseDecisions();
+    console.log(decisions);
   })
   .catch(error => {
       console.error('error:', error);
