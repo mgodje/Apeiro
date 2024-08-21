@@ -17,7 +17,7 @@ section {
     justify-content: space-around;
     width: 100%;
     max-width: 1500px;
-    margin-top: -900px; /* Reduce space between "How to Play" and the horizontal sections */
+    margin-top: -100vh; /* Reduce space between "How to Play" and the horizontal sections */
 }
 
 .horizontal-item {
