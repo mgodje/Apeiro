@@ -2,15 +2,12 @@
 .narrator-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start; /* Align content to the start of the flex container (left) */
-    position: absolute;
-    margin-left: -100vh; /* Position 10px from the left */
-    margin-top: -5vh; /* Reduce space between "How to Play" and the horizontal sections */
+    align-items: center;
+    margin-top: 4vh;
 }
 
 
-/* .narrator-box{
+.narrator-box{
     width: 30vh;
     height: 3vh;
     padding: -10;
@@ -22,10 +19,10 @@
 }
 
 .narrator-box:focus{
-    border-color: #717183;
+    border-color: #ffffff;
     outline: none;
     box-shadow: 0vh 0vh 2vh rgba(0, 123, 255, 0.5);
-} */
+}
 
 .button_yes {
     padding: 5vh 5vh;
@@ -41,8 +38,8 @@
 
 .button2 { /* for yes */
     position: absolute;
-    top: 75%;
-    left: 5%;
+    top: 85%;
+    left: 45%;
     transform: translateX(-50%);
     background-color: rgb(185, 170, 135);
     padding: 1vh 3vh;
@@ -70,8 +67,8 @@
 
 .button3 { /* for no*/
     position: absolute;
-    top: 75%;
-    left: 12%;
+    top: 85%;
+    left: 55%;
     transform: translateX(-50%);
     background-color: rgb(185, 170, 135);
     padding: 1vh 3vh;
