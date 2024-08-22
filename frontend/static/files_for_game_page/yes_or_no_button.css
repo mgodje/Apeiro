@@ -1,0 +1,136 @@
+/* Positioning Narrator and Yes containers to the top left */
+.narrator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4vh;
+}
+
+
+.narrator-box{
+    width: 30vh;
+    height: 3vh;
+    padding: -10;
+    font-size: 3vh;
+    border: 2vh solid #ccc;
+    border-radius: 2vh;
+    margin-top: 4vh;
+    box-shadow: 0vh 0vh 2vh rgba(206, 201, 201, 0.1);
+}
+
+.narrator-box:focus{
+    border-color: #ffffff;
+    outline: none;
+    box-shadow: 0vh 0vh 2vh rgba(0, 123, 255, 0.5);
+}
+
+.button_yes {
+    padding: 5vh 5vh;
+    background-color: rgb(185, 170, 135);
+    color: black;
+    border: none;
+    border-radius: 5vh;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Cabin', sans-serif;
+    font-size: 3vh;
+}
+
+.button2 { /* for yes */
+    position: absolute;
+    top: 85%;
+    left: 45%;
+    transform: translateX(-50%);
+    background-color: rgb(185, 170, 135);
+    padding: 1vh 3vh;
+    cursor: pointer;
+
+}
+
+.button2:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 3vh 6vh rgba(0, 0, 0, 0.5);
+}
+
+
+.button_no {
+    padding: 5vh 5vh;
+    background-color: rgb(185, 170, 135);
+    color: black;
+    border: none;
+    border-radius: 5vh;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Cabin', sans-serif;
+    font-size: 3vh;
+}
+
+.button3 { /* for no*/
+    position: absolute;
+    top: 85%;
+    left: 55%;
+    transform: translateX(-50%);
+    background-color: rgb(185, 170, 135);
+    padding: 1vh 3vh;
+    cursor: pointer;
+}
+
+.button3:hover {
+    transform: translateX(-50%) scale(1.05);
+    
+}
+
+
+.section1 {
+    height: 13vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    padding: 5vh;
+}
+
+
+.section1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Darken the background for better readability */
+    z-index: -1;
+}
+
+.section2 { /* this is for Game Selcection title */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    position: relative;
+    font-family: 'IM Fell English', serif;
+    text-transform: uppercase;
+    z-index: 1;
+    padding: 5vh;
+}
+
+
+.section2 h1 {
+    font-family: 'IM Fell English', serif;
+    font-size: 30vmin;
+    margin: 0;
+}
+
+
+.section2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Darken the background for better readability */
+    z-index: -1;
+}

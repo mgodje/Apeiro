@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
 
+/*resources: https://codepen.io/amit_sheen/pen/zYVwLgG */
+
 .typing {
-    font-size: 48px;
+    font-size: 5vh;
     text-align: center;
     font-family: 'IM Fell English', serif;
     color: #fff;
@@ -11,14 +13,74 @@
     display: inline-block;
     text-align: justify;
     width: auto;
+    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
 }
 
-.typing {
-  font-size: 3em;
+.typing2 {
+  font-size: 3vh;
+  text-align: center;
+  font-family: 'IM Fell English', serif;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 5s steps(14, end), blink-caret 0.75s step-end infinite;
+  display: inline-block;
+  text-align: justify;
+  width: auto;
   animation: typing 2s steps(22), blink .5s step-end infinite alternate;
 }
 
+.typing3 {
+  font-size: 7vh;
+  text-align: center;
+  font-family: 'IM Fell English', serif;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 5s steps(14, end), blink-caret 0.75s step-end infinite;
+  display: inline-block;
+  text-align: justify;
+  width: auto;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+}
+
+.typing4 {
+  font-size: 10vh;
+  text-align: center;
+  font-family: 'IM Fell English', serif;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 5s steps(14, end), blink-caret 0.75s step-end infinite;
+  display: inline-block;
+  text-align: justify;
+  width: auto;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+}
+
+
+/* .typing2 {
+  font-size: 3em;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+
+} */
+
 @keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes typing2 {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes typing3 {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes typing4 {
   from { width: 0; }
   to { width: 100%; }
 }
@@ -28,10 +90,10 @@
   to { border-right-color: rgb(185, 170, 135); }
 }
 
-@keyframes typing {
+/* @keyframes typing {
     from { width: 0; }
     to { width: 100%; }
-}
+} */
 
 
   @keyframes text {
