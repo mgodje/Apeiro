@@ -2,7 +2,7 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'IM Fell English', serif;
     overflow-x: hidden;
     background-color: #282c34; /* Fallback color */
 }
@@ -17,10 +17,9 @@ body, html {
 .section {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centers the content horizontally */
+    justify-content: center; 
     height: 100vh;
     position: relative;
-    font-family: 'Cabin', sans-serif;
     color: #ffeded;
     text-transform: uppercase;
     font-size: 8vmin;

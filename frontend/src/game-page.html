@@ -15,20 +15,37 @@ https://stackoverflow.com/questions/31525409/how-do-i-link-two-html-pages-with-a
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMPM 146 Final</title>
     <link rel="stylesheet" href="./main.css">
+
 </head>
 
 <body>
     <canvas class="webgl"></canvas>
 
-    <section class="section">
+    <section class="section1">
         <div class="effect">
-            <h1 class="typing">Game Selection</h1>
+            <span class="typing3 narrator-container">Narrator?</span>
+                <button class="button_yes button2">Yes</button>
+                <button class="button_no button3">No</button>
         </div>
     </section>
+    
+
+    <section class="section2">
+        <div class="effect">
+            <span class="typing4" style="font-family: 'IM Fell English', serif;">Game Selection</span>
+            <div class="prompt-container">
+                <label for="userInput">
+                    <span class="typing">Enter your text:</span>
+                </label>
+                <input type="text" id="userInput" class="prompt-box" placeholder="Type here...">
+            </div>
+        </div>
+    </section>
+    
 
     <section class="section">
         <div>
-            <font size=8>Begin Game By Clicking "Start" Below</font>
+            <span class="typing">Begin Game By Clicking <span class= "highlight">Start</span> Below</span>
             <a href="./game.html">
                 <button class=" button button1">Start</button>
             </a>
@@ -37,7 +54,7 @@ https://stackoverflow.com/questions/31525409/how-do-i-link-two-html-pages-with-a
 
     <section class="section">
         <div>
-            <font size=8>Back to Homepage?</font>
+            <span class="typing3">Back to Homepage?</span>
             <a href="./index.html">
                 <button class=" button button1">Return to Homepage</button>
             </a>

@@ -1,5 +1,5 @@
 /* Existing styles */
-section {
+section {  /*this is what the homepage uses*/
     height: 100vh;
     display: flex;
     justify-content: center;

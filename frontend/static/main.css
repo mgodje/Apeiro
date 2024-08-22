@@ -1,10 +1,14 @@
-@import url(effect.css);
-@import url(text-animation.css);
-@import url('reset.css');
-@import url('layout.css');
-@import url('buttons.css');
-@import url(columns.css);
-@import url(spacing.css);
-@import url(descriptions.css);
-@import url(typing_gif.css);
+@import url(./background.css);
+@import url(./files_for_index/text-animation.css);
+@import url(./files_for_index/reset.css);
+@import url(./files_for_index/layout.css);
+@import url(./files_for_index/buttons.css);
+@import url(./files_for_index/columns.css);
+@import url(./files_for_index/spacing.css);
+@import url(./files_for_index/descriptions.css);
+@import url(./files_for_index/typing_gif.css);
+@import url(./files_for_game_page/prompt.css);
+@import url(./files_for_game_page/yes_or_no_button.css);
+@import url(./files_for_game_page/highlight.css);
+
 
