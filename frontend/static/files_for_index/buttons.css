@@ -26,3 +26,18 @@
     font-family: 'Cabin', sans-serif;
     font-size: 5vh;
 }
+
+.button_start {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color:rgb(185, 170, 135);
+    padding: 1vh 3vh;
+    cursor: pointer;
+}
+
+.button_start:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6vh 12vh rgba(0, 0, 0, 0.4);
+}
