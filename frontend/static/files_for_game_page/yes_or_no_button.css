@@ -38,7 +38,7 @@
 
 .button2 { /* for yes */
     position: absolute;
-    top: 85%;
+    top: 67%;
     left: 45%;
     transform: translateX(-50%);
     background-color: rgb(185, 170, 135);
@@ -67,7 +67,7 @@
 
 .button3 { /* for no*/
     position: absolute;
-    top: 85%;
+    top: 67%;
     left: 55%;
     transform: translateX(-50%);
     background-color: rgb(185, 170, 135);
@@ -133,4 +133,8 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.5); /* Darken the background for better readability */
     z-index: -1;
+}
+
+.start-container {
+    margin-top: 15vh; /* Adjust this value as needed */
 }

@@ -58,6 +58,20 @@
   animation: typing 2s steps(22), blink .5s step-end infinite alternate;
 }
 
+.typing5 {
+  font-size: 10vh;
+  text-align: center;
+  font-family: 'Cabin', sans-serif;
+  color: #fff;
+  white-space: normal;
+  overflow: hidden;
+  animation: typing 5s steps(14, end), blink-caret 0.75s step-end infinite;
+  display: inline-block;
+  text-align: justify;
+  width: auto;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+}
+
 
 /* .typing2 {
   font-size: 3em;
@@ -81,6 +95,11 @@
 }
 
 @keyframes typing4 {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes typing5 {
   from { width: 0; }
   to { width: 100%; }
 }

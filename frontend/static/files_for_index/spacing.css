@@ -7,7 +7,7 @@ section {  /*this is what the homepage uses*/
     flex-direction: column;
     position: relative;
     z-index: 1;
-    padding: 10px;
+    padding: 2vh;
 }
 
 
@@ -16,15 +16,15 @@ section {  /*this is what the homepage uses*/
     display: flex;
     justify-content: space-around;
     width: 100%;
-    max-width: 1500px;
+    max-width: 200vh;
     margin-top: -100vh; /* Reduce space between "How to Play" and the horizontal sections */
 }
 
 .horizontal-item {
     flex: 1;
     text-align: center;
-    padding: 25px;
-    border: 1px solid #fff;
-    margin: 10px;
-    border-radius: 40px;
+    padding: 3.5vh;
+    border: 0.15vh solid #fff;
+    margin: 1.5vh;
+    border-radius: 6vh;
 }
