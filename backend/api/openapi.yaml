@@ -1,0 +1,159 @@
+openapi: '3.0.3'
+
+info:
+  description: backend
+  version: 0.1.0
+  title: backend
+
+servers:
+  - url: http://localhost:3010
+
+paths:
+  /v0/current-scene:
+    get:
+      description: Get the current number, scene, and decisions 
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scene'
+        404:
+          description: Not found
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v0/current-decisions:
+    get:
+      description: Get the current decisions 
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        404:
+          description: Not found
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v0/create-story:
+    post:
+      description: Creates the initial story
+      requestBody:
+        description: Story prompt
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+
+      responses:
+        201:
+          description: Successful post
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scene'
+        404:
+          description: Not found
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v0/choose-decision:
+    post:
+      description: Choose the decision for the scene
+      requestBody:
+        description: Decision number (1, 2, 3, 4)
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number:
+                  type: integer
+
+      responses:
+        201:
+          description: Successful post and returns the new scene based on the decision
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scene'
+        404:
+          description: Not found
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v0/scenes:
+    get:
+      description: Get all the scenes
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+        404:
+          description: Not found
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      
+
+
+components:
+  schemas:
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Scene:
+      type: object
+      properties:
+        number:
+          type: integer
+        scene:
+          type: string
+        decisions:
+          type: array
+          items:
+            type: string
+        pickedDecision:
+          type: string
+          nullable: true
+        image:
+          type: string
