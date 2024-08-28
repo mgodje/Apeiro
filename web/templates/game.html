@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block content %}
+<canvas class="webgl"></canvas>
+
+<section class="section">
+    <div class="effect">
+        <h1 class="typing">Your Journey Begins...</h1>
+    </div>
+</section>
+
+<script type="module" src="./game.js"></script>
+{% endblock %}

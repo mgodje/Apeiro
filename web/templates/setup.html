@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block content %}
+<canvas class="webgl"></canvas>
+
+<section class="section">
+    <div class="effect">
+    <h1 class="typing" style="font-family: 'IM Fell English', serif;">Create Game</h1>
+    <div class="prompt-container">
+        <label for="userInput">
+            <span class="typing">Start Your Story:</span>
+        </label>
+        <textarea id="userInput" class="prompt-box" placeholder="Type here..."></textarea>
+    </div>
+</div>
+            
+            <div class="narrator-container">
+                <span class="typing">Do you want a Narrator? <br></span>
+                <button class="button_yes button2">Yes</button>
+                <button class="button_no button3">No</button>
+            </div>
+            
+            <div class="start-container">
+                <span class="typing">Begin Game By Clicking <span class="highlight">Start</span> Below</span>
+                <a href="/game">
+                    <button class="button button_start">Start</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div>
+        <span class="typing3">Back to Homepage?</span>
+        <a href="/">
+            <button class=" button button1">Return to Homepage</button>
+        </a>
+    </div>
+</section>
+
+<script type="module" src="./game_page.js"></script>
+{% endblock %}
