@@ -1,11 +1,13 @@
 require('dotenv').config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const API_KEY = 'AIzaSyB8dhEwKDLN7RnBpaMkLcwpOumIFLeLzwA';
+const API_KEY = '';
 const imageGenerator = require('./imageGenerator');
 const audioGenerator = require('./audioGenerator');
 let scenes = [];
 let health = 100;
 let prompt;
+
+
 /**
  * Return all the scenes
  * 
@@ -33,6 +35,7 @@ function parseDecisions() {
   }
   return decisions;
 }
+
 
 // function parseHealth() {
 //   const regex = /Health:\s(\d+)/g;
