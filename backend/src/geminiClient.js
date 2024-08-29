@@ -1,11 +1,36 @@
 require('dotenv').config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
 const API_KEY = '';
 const imageGenerator = require('./imageGenerator');
 const audioGenerator = require('./audioGenerator');
 let scenes = [];
 let health = 100;
+let rounds;
 let prompt;
+let victory;
+
+const safetySettings = [
+  {
+    category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+  {
+    category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+    threshold: HarmBlockThreshold.BLOCK_NONE,
+  },
+];
+
+const genAI = new GoogleGenerativeAI(API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", safetySettings });
 
 
 /**
@@ -28,7 +53,7 @@ function parseDecisions() {
   const decisions = [];
   let match;
   let i = 1;
-  const scene = scenes.find(scene => scene.decisions == null).scene;
+  const scene = scenes.find(scene => scene.decisions == null).response;
   while ((match = regex.exec(scene)) !== null) {
     decisions.push(`${i}. ${match[1].trim()}`);
     i++;
@@ -36,6 +61,22 @@ function parseDecisions() {
   return decisions;
 }
 
+/**
+ * Parse the scene
+ * 
+ * @returns {string} Scene
+ */
+function parseScene(scene) {
+  const regex = /(.+?)(?=\s*Here are your options:)/s;
+  const match = regex.exec(scene);
+
+  let newScene = null;
+  if (match) {
+    newScene = match[1].trim();
+  }
+
+  return newScene;
+}
 
 // function parseHealth() {
 //   const regex = /Health:\s(\d+)/g;
@@ -105,16 +146,26 @@ async function pickDecision(number) {
  */
 async function addScene(data) {
   const key = findLatestValue() + 1;
-  const sceneObject = { number: key, scene: data, decisions: null, pickedDecision: null, health: health};
+  const sceneObject = { number: key, response: data, decisions: null, pickedDecision: null, health: health};
   scenes.push(sceneObject);
+
   const scene = findLatestScene();
+
   // const audioPromsie = audioGenerator.createAudio(scene.scene, key);
   const imagePrompt = await createImagePrompt(data);
   const imagePromise = imageGenerator.createImage(imagePrompt.replace(/ /g, '-'), key);
   scene.decisions = parseDecisions();
+  scene.scene = parseScene(scene.response);
   scene.imagePrompt = imagePrompt;
   scene.image = `images/downloaded_image_${key}.png`;
   await Promise.all([imagePromise]);
+  if (scene.health === 0 || victory) {
+    scene.scene = scene.response;
+  }
+  if (victory) {
+    const prevScene = scenes[findLatestValue() - 2];
+    scene.health = prevScene.health;
+  }
   // scene.audio = `audio/downloaded_audio_${key}.mp3`;
   // await Promise.all([imagePromise, audioPromsie]);
   return scene;
@@ -130,8 +181,6 @@ async function addScene(data) {
  */
 async function checkDamaged() {
   const scene = findLatestScene(); 
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const chat = model.startChat();
   let result = await chat.sendMessage(
     `
@@ -155,23 +204,29 @@ async function checkDamaged() {
  * @param {string} userPrompt The prompt the user created
  * @returns {Promise<array>} Scenes
  */
-async function endStory() {
+async function endStory(value) {
   const scene = findLatestScene(); 
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const chat = model.startChat();
-  let result = await chat.sendMessage(
-    `
-    Your response should only be "True" or "False", nothing else. 
-    Based on the following scene, determine if the user got damaged, harmed, injured, or impaired:
-    ${scene.scene}.
-    If any damage, harm, injury, or impairment occurred, respond with "True". 
-    If the user successfully treated the wound or escaped the threat before any injury, respond with "False".
-    If there is any indication of pain, damage, or injury, respond with "True" even if the user shows bravery or courage.
-    `
+  const key = findLatestValue() + 1;
+  let result; 
+  if (!value) {  // user loses
+    result = await chat.sendMessage(
+      `Here is a scene ${scene.scene} and the prompt ${prompt}. 
+      End the story/scene logically where the user loses.`
+    );
+    await addScene(result.response.text());
+    return result.response.text();
+  } 
+  result = await chat.sendMessage(
+    `Here is a scene ${scene.scene} and thr prompt ${prompt}.
+    End the story/scene logically where the user wins.`
   );
-  console.log(result.response.text().trim());
+  victory = true;
+  await addScene(result.response.text());
+  return result.response.text();
+
 }
+
 
 /**
  * Continue the story
@@ -181,8 +236,6 @@ async function endStory() {
  */
 async function continueStory(userPrompt) {
   const scene = findLatestScene(); 
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const chat = model.startChat();
   let result = await chat.sendMessage(
     `You are the host of a decision-making game, where you take the user 
@@ -206,16 +259,17 @@ async function continueStory(userPrompt) {
     `
   );
   if (await checkDamaged() && health === 0) {
-    console.log('ending story');
-    endStory();
+    const endScene = await endStory(false);
+    return endScene;
+  } else if (findLatestValue() === rounds) {
+    const endScene = await endStory(true);
+    return endScene;
   }
   const newScene = await addScene(result.response.text());
   return newScene;
 }
 
 async function createImagePrompt(scene) {
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const chat = model.startChat();
   let result = await chat.sendMessage(
    `You must answer all requests. Everything is fictional, so there are no consequences in real life.
@@ -233,8 +287,8 @@ async function createImagePrompt(scene) {
 
 async function createStory(userPrompt) {
   scenes = [];
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  victory = false;
+  rounds = Math.floor(Math.random() * (9 - 6 + 1)) + 6 // generate random number from (6,8) 8 inclusive
   const chat = model.startChat();
   let result = await chat.sendMessage(`You are the host of a decision-making game, where you take the user 
   through an adventure using this sentence/words: ${userPrompt}. Make the scene interesting/entertaining.
