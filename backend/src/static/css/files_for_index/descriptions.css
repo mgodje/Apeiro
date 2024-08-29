@@ -1,0 +1,28 @@
+.horizontal-container2 {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 90vh;
+    padding: 2vh 0;
+}
+
+.horizontal-item2 {
+    display: flex;
+    flex-direction: column; /* Ensures vertical stacking of elements */
+    justify-content: center;
+    align-items: center;
+    padding: 1vh;
+    background-color: #333;
+    width: 27.8vh; /* Increased width to accommodate text */
+    margin: 2vh;
+    min-height: 15vh; /* Added minimum height to ensure the content fits */
+    overflow: visible; /* Ensures content is not cut off */
+}
+
+.horizontal-item2 p {
+    margin-top: 2vh;
+    margin-right: 0; /* Removed margin to prevent cutting off */
+    font-size: 2.5vh;
+    text-align: center; /* Center-align text to look better within the container */
+    text-transform: initial;
+}

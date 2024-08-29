@@ -2,18 +2,15 @@ import * as THREE from 'three'
 import GUI from 'lil-gui'
 import gsap from 'gsap'
 
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
-
 /**
  * Debug
  */
+
 const gui = new GUI()
 
 const parameters = {
     materialColor: '#ffeded'
 } 
-
 
 gui
     .addColor(parameters, 'materialColor')
@@ -22,12 +19,15 @@ gui
         material.color.set(parameters.materialColor)
         particlesMaterial.color.set(parameters.materialColor)
     }) 
+    // hide the GUI
+    gui.hide()
 
 /**
  * 
  * Base
  */
 // Canvas
+
 const canvas = document.querySelector('canvas.webgl')
 
 // Scene
@@ -47,68 +47,25 @@ const material = new THREE.MeshToonMaterial({
 })
 
 // mesh
-const objectsDistance = 4
-const mesh1 = new THREE.Mesh(
-    new THREE.TorusGeometry(1, 0.4, 16, 32),
-    material
-)
-const mesh2 = new THREE.Mesh(
-    new THREE.ConeGeometry(1, 2, 32),
-    material
-)
-const mesh3 = new THREE.Mesh(
-    new THREE.TorusGeometry(0.8, 0.35, 100, 16),
-    material
-)
-const mesh4 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    material
-)
-mesh1.position.x = 2
-mesh2.position.x = -2
-mesh3.position.x = 2
-mesh4.position.x = -2 
-
-mesh1.position.y = -objectsDistance * 0
-mesh2.position.y = -objectsDistance * 1
-mesh3.position.y = -objectsDistance * 2
-mesh4.position.y = -objectsDistance * 3
-
-scene.add(mesh1, mesh2, mesh3, mesh4)
-
-const sectionMeshes = [mesh1, mesh2, mesh3, mesh4]
+const sphereGeometry = new THREE.SphereGeometry(0, 0, 0);
+const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x00FFFFFF  });
+const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+sphereMesh.position.set(0, 0, 0);
+scene.add(sphereMesh);
 
 // Lights
 const directionalLight = new THREE.DirectionalLight(0xffffff, 3)
 directionalLight.position.set(1, 1, 0)
 scene.add(directionalLight)
 
-// Particles
 
-// geometry
-const particlesCount = 200
-const positions = new Float32Array(particlesCount * 3)
+// Create Points
+const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particles);
 
-for (let i = 0; i < particlesCount; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 10
-    positions[i * 3 + 1] = objectsDistance * 0.5 - Math.random() * objectsDistance * sectionMeshes.length
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 10
-}
+const particles1 = new THREE.Points(particlesGeometry1, particlesMaterial1);
+scene.add(particles1);
 
-const particlesGeometry = new THREE.BufferGeometry()
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-
-
-// material
-const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.02,
-    color: parameters.materialColor,
-    sizeAttenuation: true
-})
-
-// points
-const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-scene.add(particles)
 
 /**
  * Sizes
@@ -184,37 +141,68 @@ window.addEventListener('mousemove', (event) => {
     cursor.y = event.clientY / sizes.height - 0.5
 })
 
+window.addEventListener('scroll', () => {
+    scrollY = window.scrollY
+    const newSection = Math.floor(scrollY / sizes.height)
+    if (newSection !== currentSection) {
+        currentSection = newSection
+
+        // Apply effect based on specific sections
+        if (currentSection === 1) {
+            // "How to Play" section effect
+            gsap.to(mesh2.rotation, {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                x: '+=6',
+                y: '+=3',
+                z: '+=1.5'
+            })
+        } else if (currentSection === 2) {
+            // "Creators" section effect
+            gsap.to(mesh3.rotation, {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                x: '+=6',
+                y: '+=3',
+                z: '+=1.5'
+            })
+        } else if (currentSection === 3) {
+            // "About Us" section effect
+            gsap.to(mesh4.rotation, {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                x: '+=6',
+                y: '+=3',
+                z: '+=1.5'
+            })
+        }
+    }
+})
+
+
+
+
 /**
  * Animate
  */
 const clock = new THREE.Clock()
 let previousTime = 0    
 
-const tick = () =>
-{
-    const elapsedTime = clock.getElapsedTime()
-    const deltaTime = elapsedTime - previousTime
-    previousTime = elapsedTime
+const tick = () => {
+    const elapsedTime = clock.getElapsedTime();
+    const deltaTime = elapsedTime - previousTime;
+    previousTime = elapsedTime;
 
-    // animate camera
-    camera.position.y = - scrollY / sizes.height * objectsDistance
+    // Rotate the mesh
+    sphereMesh.rotation.y += 0.01;
 
-    const parallelxX = cursor.x * 0.5
-    const parallelxY = -cursor.y * 0.5
-    cameraGroup.position.x += (parallelxX - cameraGroup.position.x) * 5 * deltaTime
-    cameraGroup.position.y += (parallelxY - cameraGroup.position.y) * 5 * deltaTime
-
-    // animate
-    for (const mesh of sectionMeshes) {
-        mesh.rotation.x += deltaTime * 0.1
-        mesh.rotation.y += deltaTime * 0.12
-    }
-
-    // Render
-    renderer.render(scene, camera)
+    // Render the scene
+    renderer.render(scene, camera);
 
     // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
-}
+    window.requestAnimationFrame(tick);
+};
 
-tick()
+tick();
+
+

@@ -1,0 +1,119 @@
+/* body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+section1 {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+} */
+
+/* Horizontal layout for the sections */
+.horizontal-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 200vh;
+}
+
+.horizontal-item {
+    flex: 1;
+    text-align:center;
+    padding: 3vh;
+    border: 2vh solid #fff;
+    margin: 2vh;
+    border-radius: 2vh;
+}
+
+/* Basic reset and setup */
+/* body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #282c34;
+    color: white;
+} */
+
+/* .section1 {
+    padding: 0px;
+    text-align: center;
+}
+
+.effect {
+    margin-top: 10vh; 
+} */
+
+/* h1.typing {
+    margin-bottom: 30vh; 
+} */
+
+
+
+.horizontal-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3vh 0;
+}
+
+.horizontal-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3vh;
+    border: 2vh solid #0077ff; /* Border color and thickness */
+    border-radius: 2vh; /* Rounded corners */
+    background-color: #333; /* Background color inside the border */
+    box-shadow: 0 0.6vh 1.2vh rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    width: 30vh; /* Fixed width for consistency */
+    margin: 2vh; /* Space between items */
+}
+
+.horizontal-item h3, .horizontal-item h4, .horizontal-item h5 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 6.5vh;
+}
+
+.horizontal-item p {
+    margin-top: 2vh;
+    font-size: 2vh;
+    color: #ddd;
+}
+
+
+.horizontal-item:nth-child(1) {
+    border-color: #867c7c; /* Red border for Create */
+    border-width: 0.6vh;
+}
+
+.horizontal-item:nth-child(2) {
+    border-color: #867c7c; /* Green border for Imagine */
+    border-width: 0.6vh;
+}
+
+.horizontal-item:nth-child(3) {
+    border-color: #867c7c; /* Blue border for Choose */
+    border-width: 0.6vh;
+}
+
+.horizontal-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.9vh 1.8vh rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+
+

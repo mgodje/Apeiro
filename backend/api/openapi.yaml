@@ -9,6 +9,27 @@ servers:
   - url: http://localhost:3010
 
 paths:
+  /:
+    get:
+      description: Renders the homepage
+      responses:
+        200:
+          description: Successful response
+
+  /explore:
+    get:
+      description: Renders the explore page
+      responses:
+        200:
+          description: Successful response
+  
+  /game:
+    get:
+      description: Renders the game page
+      responses:
+        200:
+          description: Successful response
+          
   /v0/current-scene:
     get:
       description: Get the current number, scene, and decisions 

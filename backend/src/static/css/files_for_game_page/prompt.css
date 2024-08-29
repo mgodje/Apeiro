@@ -1,0 +1,26 @@
+
+.prompt-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4vh;
+}
+
+.prompt-box {
+    width: 40vh;
+    height: 5vh; /* Adjusted height for textarea */
+    padding: 2vh;
+    font-size: 2vh;
+    border: 2vh solid #ccc; /* Adjusted border thickness */
+    border-radius: 2vh;
+    margin-top: 4vh;
+    box-shadow: 0vh 0vh 2vh rgba(206, 201, 201, 0.1);
+    resize: none; /* Prevents resizing by the user */
+    overflow-wrap: break-word; /* Ensures text wraps to the next line */
+}
+
+.prompt-box:focus {
+    border-color: #717183;
+    outline: none;
+    box-shadow: 0vh 0vh 2vh rgba(0, 123, 255, 0.5);
+}
