@@ -145,7 +145,7 @@ async function addScene(data) {
   scene.decisions = parseDecisions();
   scene.scene = parseScene(scene.response);
   scene.imagePrompt = imagePrompt;
-  scene.image = `images/downloaded_image_${key}.png`;
+  scene.image = `static/css/images/scenes/downloaded_image_${key}.png`;
   await Promise.all([imagePromise]);
   if (scene.health === 0 || victory) {
     scene.scene = scene.response;

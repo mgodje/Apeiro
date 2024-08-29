@@ -21,7 +21,7 @@ function createAudio(prompt, number) {
     .request(options)
     .then((response) => {
       const audioUrl = response.data['openai/af_alloy'].audio_resource_url;
-      const audioDir = path.resolve(__dirname, "audio");
+      const audioDir = path.resolve(__dirname, "static", "audio");
       const filePath = path.join(audioDir, `downloaded_audio_${number}.mp3`)
       console.log('audio cost:',response.data['openai/af_alloy'].cost);
       axios({
