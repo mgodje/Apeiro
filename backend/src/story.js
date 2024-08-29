@@ -1,24 +1,23 @@
-const llamaClient = require('./llamaClient');
+const geminiClient = require('./geminiClient');
 
 exports.createStory = async (req, res) => {
-  const scene = await llamaClient.createStory(req.body.prompt);
+  const scene = await geminiClient.createStory(req.body.prompt);
   res.status(201).send(scene);
 }
 
 
 exports.chooseDecision = async (req, res) => {
-  const decision = await llamaClient.pickDecision(req.body.number);
+  const decision = await geminiClient.pickDecision(req.body.number);
   if (!decision) {
     return res.status(404).send();
   }
-  const scene = await llamaClient.findLatestScene();
-  console.log('latest scene', scene);
+  const scene = await geminiClient.findLatestScene();
   res.status(201).send(scene);
 }
 
 
 exports.getScene = async (req, res) => {
-  const scene = llamaClient.findLatestScene();
+  const scene = geminiClient.findLatestScene();
   if (!scene) {
     return res.status(404).send();
   }
@@ -26,7 +25,7 @@ exports.getScene = async (req, res) => {
 }
 
 exports.getDecisions = async (req, res) => {
-  const decisions = llamaClient.findLatestDecisions();
+  const decisions = geminiClient.findLatestDecisions();
   if (!decisions) {
     return res.status(404).send();
   }
@@ -35,7 +34,7 @@ exports.getDecisions = async (req, res) => {
 
 
 exports.getAllScenes = async (req, res) => {
-  const scenes = llamaClient.allScenes();
+  const scenes = geminiClient.allScenes();
   if (!scenes) {
     return res.status(404).send();
   }
