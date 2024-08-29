@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
-const API_KEY = '';
+const API_KEY = 'AIzaSyB8dhEwKDLN7RnBpaMkLcwpOumIFLeLzwA';
 const imageGenerator = require('./imageGenerator');
 const audioGenerator = require('./audioGenerator');
 let scenes = [];
@@ -77,18 +77,6 @@ function parseScene(scene) {
 
   return newScene;
 }
-
-// function parseHealth() {
-//   const regex = /Health:\s(\d+)/g;
-//   let match;
-//   let newHealth = null;
-//   const scene = findLatestScene();
-//   while ((match = regex.exec(scene.scene)) !== null) {
-//     newHealth = match[1].trim();
-//   }
-//   console.log(scene.scene);
-//   console.log(newHealth);
-// }
 
 /**
  * Find the latest scene
@@ -204,23 +192,21 @@ async function checkDamaged() {
  * @param {string} userPrompt The prompt the user created
  * @returns {Promise<array>} Scenes
  */
-async function endStory(value) {
+async function endStory(value, text) {
   const scene = findLatestScene(); 
   const chat = model.startChat();
   const key = findLatestValue() + 1;
+  let endStoryPrompt = `Here is a scene ${scene.scene} and the prompt ${prompt}.
+  End the story/scene logically where the user ${text}
+  Refer to the user as "You" and do not speak in first person.
+  .`
   let result; 
   if (!value) {  // user loses
-    result = await chat.sendMessage(
-      `Here is a scene ${scene.scene} and the prompt ${prompt}. 
-      End the story/scene logically where the user loses.`
-    );
+    result = await chat.sendMessage(endStoryPrompt);
     await addScene(result.response.text());
     return result.response.text();
   } 
-  result = await chat.sendMessage(
-    `Here is a scene ${scene.scene} and thr prompt ${prompt}.
-    End the story/scene logically where the user wins.`
-  );
+  result = await chat.sendMessage(endStoryPrompt);
   victory = true;
   await addScene(result.response.text());
   return result.response.text();
@@ -259,10 +245,10 @@ async function continueStory(userPrompt) {
     `
   );
   if (await checkDamaged() && health === 0) {
-    const endScene = await endStory(false);
+    const endScene = await endStory(false, 'loses');
     return endScene;
   } else if (findLatestValue() === rounds) {
-    const endScene = await endStory(true);
+    const endScene = await endStory(true, 'wins');
     return endScene;
   }
   const newScene = await addScene(result.response.text());
