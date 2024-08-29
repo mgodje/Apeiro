@@ -1,0 +1,97 @@
+/* Basic resets specific to game.html */
+body#game-page, html#game-page {
+    width: 100%;
+    height: 100%;
+    background: url('./images/black_background.png') no-repeat center center fixed;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+
+}
+
+/* Button styles */
+#game-page .box {
+    position: absolute; /* To position buttons over the 3D canvas */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: none;
+    color: #000;
+    font-size: 2vh; /* Adjusted to scale with the viewport height */
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    transform-origin: center;
+}
+
+#game-page .box:hover {
+    transform: scale(1.2);
+    background-color: #c1c1e9;
+}
+
+/* Specific positioning for each button */
+#game-page .health-bar {
+    background-color: #b63535bd;
+    width: 30vh; /* Adjusted to scale with the viewport height */
+    height: 12.5vh;
+    top: 10vh; /* Positioning relative to the viewport */
+    left: 10vh; /* Adjust according to the canvas layout */
+}
+
+#game-page .volume-box {
+    background-color: #948b8bbd;
+    width: 30vh;
+    height: 7.5vh;
+    top: 85vh;
+    left: 10vh;
+}
+
+#game-page .narration-box {
+    background-color: #948b8bbd;
+    width: 60vh;
+    height: 14vh;
+    opacity: 0.8;
+    top: 80vh;
+    left: 35%;
+
+}
+
+#game-page .option1 {
+    background-color: #948b8bbd;
+    width: 18.75vh;
+    height: 6.25vh;
+    top: 20vh;
+    right: 10vh;
+}
+
+#game-page .option2 {
+    background-color: #948b8bbd;
+    width: 18.75vh;
+    height: 6.25vh;
+    top: 30vh;
+    right: 10vh;
+}
+
+#game-page .option3 {
+    background-color: #948b8bbd;
+    width: 18.75vh;
+    height: 6.25vh;
+    top: 40vh;
+    right: 10vh;
+}
+
+#game-page .option4 {
+    background-color: #948b8bbd;
+    width: 18.75vh;
+    height: 6.25vh;
+    top: 50vh;
+    right: 10vh;
+}
+
+#game-page .custom-box {
+    background-color: #948b8bbd;
+    width: 20vh;
+    height: 10vh;
+    top: 75vh;
+    right: 10vh;
+}

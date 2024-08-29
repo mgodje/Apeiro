@@ -1,4 +1,4 @@
-@import url(./background.css);
+@import url(./background.css);   
 @import url(./files_for_index/text-animation.css);
 @import url(./files_for_index/reset.css);
 @import url(./files_for_index/layout.css);
@@ -10,5 +10,6 @@
 @import url(./files_for_game_page/prompt.css);
 @import url(./files_for_game_page/yes_or_no_button.css);
 @import url(./files_for_game_page/highlight.css);
+@import url(./playing.css);
 
 

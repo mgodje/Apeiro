@@ -2,9 +2,6 @@ import * as THREE from 'three'
 import GUI from 'lil-gui'
 import gsap from 'gsap'
 
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
-
 /**
  * Debug
  */
@@ -15,7 +12,6 @@ const parameters = {
     materialColor: '#ffeded'
 } 
 
-
 gui
     .addColor(parameters, 'materialColor')
     .onChange(() => 
@@ -23,6 +19,8 @@ gui
         material.color.set(parameters.materialColor)
         particlesMaterial.color.set(parameters.materialColor)
     }) 
+    // hide the GUI
+    gui.hide()
 
 /**
  * 
@@ -48,17 +46,12 @@ const material = new THREE.MeshToonMaterial({
     gradientMap: gradientTexture    
 })
 
-
-
 // mesh
-
-
 const sphereGeometry = new THREE.SphereGeometry(0, 0, 0);
 const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x00FFFFFF  });
 const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
 sphereMesh.position.set(0, 0, 0);
 scene.add(sphereMesh);
-
 
 // Lights
 const directionalLight = new THREE.DirectionalLight(0xffffff, 3)

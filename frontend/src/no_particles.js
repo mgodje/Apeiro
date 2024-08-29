@@ -58,40 +58,6 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 3)
 directionalLight.position.set(1, 1, 0)
 scene.add(directionalLight)
 
-// Particles
-
-// Particle System
-const particlesCount = 500;
-const positions = new Float32Array(particlesCount * 3);
-
-for (let i = 0; i < particlesCount; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 10;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
-}
-
-const particlesGeometry = new THREE.BufferGeometry();
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-const particlesGeometry1 = new THREE.BufferGeometry();
-particlesGeometry1.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-// Particle Material
-const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.05,
-    color: 0x7CDFDC,
-    sizeAttenuation: true,
-    transparent: true,
-    opacity: 0.8,
-});
-
-const particlesMaterial1 = new THREE.PointsMaterial({
-    size: 0.05,
-    color: 0xFAD8AB,
-    sizeAttenuation: true,
-    transparent: true,
-    opacity: 0.8,
-});
 
 // Create Points
 const particles = new THREE.Points(particlesGeometry, particlesMaterial);
@@ -99,6 +65,7 @@ scene.add(particles);
 
 const particles1 = new THREE.Points(particlesGeometry1, particlesMaterial1);
 scene.add(particles1);
+
 
 /**
  * Sizes
@@ -212,6 +179,9 @@ window.addEventListener('scroll', () => {
     }
 })
 
+
+
+
 /**
  * Animate
  */
@@ -226,10 +196,6 @@ const tick = () => {
     // Rotate the mesh
     sphereMesh.rotation.y += 0.01;
 
-    // Animate particles by rotating them around the Y-axis
-    particles.rotation.y += 0.01 * deltaTime;
-    particles1.rotation.y += 0.02 * deltaTime;
-
     // Render the scene
     renderer.render(scene, camera);
 
@@ -238,3 +204,5 @@ const tick = () => {
 };
 
 tick();
+
+
