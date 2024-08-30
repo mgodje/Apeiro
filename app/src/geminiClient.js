@@ -120,8 +120,10 @@ async function pickDecision(number) {
   if (number < 1 || number > 4 || findLatestValue() === 0) {
     return false;
   }
+  console.log('number:', number);
   const scene = scenes.find(scene => scene.pickedDecision === null);
   const picked = scene.decisions[number-1];
+  console.log('picked:', picked);
   scene.pickedDecision = picked;
   const newScene = await continueStory(prompt);
   return newScene;
@@ -146,7 +148,7 @@ async function addScene(data) {
   scene.decisions = parseDecisions();
   scene.scene = parseScene(scene.response);
   scene.imagePrompt = imagePrompt;
-  scene.image = `static/css/images/scenes/downloaded_image_${key}.png`;
+  scene.image = `./css/images/scenes/downloaded_image_${key}.jpg`;
   await Promise.all([imagePromise]);
   if (scene.health === 0 || victory) {
     scene.scene = scene.response;
