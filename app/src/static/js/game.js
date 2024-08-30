@@ -79,6 +79,10 @@ function makeDecision(index) {
 
 function updateState(sceneInfo) {
     message.innerText = '';
+    if (sceneInfo.decisions.length === 0) {
+        endStory();
+        return;
+    }
     sceneInfo.decisions.forEach((decision, index) => {
         optionBoxes[index].textContent = decision;
         optionBoxes[index].style.display = 'none';
@@ -104,6 +108,17 @@ function updateState(sceneInfo) {
     setTimeout(() => {
         typeInBox(sceneInfo.scene, narrationBox);
     }, 800);
+}
+
+function endStory() {
+    fadeOut();
+    UI.style.display = 'none';
+    message.innerText = 'Game Over';
+    message.style.zIndex = '100';
+    setTimeout(() => {
+        message.style.opacity = '1';
+        window.location.href = '/explore';
+    }, 5000);
 }
 
 function replaceSmartQuotes(text) {
@@ -189,6 +204,7 @@ customPromptSubmitBtn.addEventListener('click', () => {
         return;
     }
     customPrompt.style.display = 'none';
+    customPromptBtn.style.display = 'none';
     fadeOut();
     fetch('/v0/choose-decision', {
         method: 'POST',
