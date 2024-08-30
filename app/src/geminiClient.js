@@ -266,7 +266,7 @@ async function continueStory(userPrompt) {
   if (await checkDamaged() && health === 0) {
     const endScene = await endStory(false, 'loses');
     return endScene;
-  } else if (findLatestValue() === rounds || true) {
+  } else if (findLatestValue() === rounds) {
     const endScene = await endStory(true, 'wins');
     return endScene;
   }

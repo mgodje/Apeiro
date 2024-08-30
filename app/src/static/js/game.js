@@ -79,10 +79,6 @@ function makeDecision(index) {
 
 function updateState(sceneInfo) {
     message.innerText = '';
-    if (sceneInfo.decisions.length === 0) {
-        endStory();
-        return;
-    }
     sceneInfo.decisions.forEach((decision, index) => {
         optionBoxes[index].textContent = decision;
         optionBoxes[index].style.display = 'none';
@@ -106,7 +102,7 @@ function updateState(sceneInfo) {
 
     fadeIn();
     setTimeout(() => {
-        typeInBox(sceneInfo.scene, narrationBox);
+        typeInBox(sceneInfo.scene, narrationBox, sceneInfo.decisions.length);
     }, 800);
 }
 
@@ -127,7 +123,7 @@ function replaceSmartQuotes(text) {
     return text;
 }
 
-function typeInBox(text, element) {
+function typeInBox(text, element, decisionsLength) {
     let sentences = text.match(/[^.!?]+[.!?]+[\])'"`’”]*|.+/g);
     for (let i = 0; i < sentences.length - 1; i++) { 
         if (sentences[i].length < 150) {
@@ -152,6 +148,12 @@ function typeInBox(text, element) {
                     if (currentSentenceIndex === sentences.length - 1) {
                         UI.style.cursor = 'default';
                         UI.removeEventListener('click', proceedToNextSentence);
+                        if (decisionsLength === 0) {
+                            setTimeout(() => {
+                                endStory();
+                            }, 3000);
+                            return;   
+                        }
                         optionBoxes.forEach((box, index) => {
                             box.style.display = 'block';
                         });
