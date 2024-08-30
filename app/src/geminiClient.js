@@ -115,14 +115,14 @@ function findLatestDecisions() {
  * @param {int} number The number of the decision
  * @returns {Promise<string>} Picked decision
  */
-async function pickDecision(number) {
-  if (number < 1 || number > 4 || findLatestValue() === 0) {
+async function pickDecision(number, custom) {
+  if (number < 0 || number > 4 || findLatestValue() === 0) {
     return false;
   }
-  console.log('number:', number);
   const scene = scenes.find(scene => scene.pickedDecision === null);
-  const picked = scene.decisions[number-1];
-  console.log('picked:', picked);
+  let picked = custom;
+  if (number != 0)
+    picked = scene.decisions[number-1];
   scene.pickedDecision = picked;
   const newScene = await continueStory(prompt);
   return newScene;

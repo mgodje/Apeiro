@@ -7,7 +7,10 @@ exports.createStory = async (req, res) => {
 
 
 exports.chooseDecision = async (req, res) => {
-  const decision = await geminiClient.pickDecision(req.body.number);
+  let custom = ''
+  if (req.body.custom)
+    custom = req.body.custom;
+  const decision = await geminiClient.pickDecision(req.body.number, custom);
   if (!decision) {
     return res.status(404).send();
   }

@@ -113,6 +113,11 @@ paths:
               properties:
                 number:
                   type: integer
+                custom:
+                  type: string
+                  description: Optional additional information
+              required:
+                - number
 
       responses:
         201:

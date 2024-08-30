@@ -33,9 +33,6 @@ html, body {
     opacity: 0;
 }
 
-
-
-
 #message {
     position: absolute;
     top: 50%;
@@ -84,6 +81,103 @@ html, body {
     flex-direction: column;
 }
 
+#custom-prompt {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+#custom-prompt-box {
+    width: 30%;
+    height: 40%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    border: 2px solid rgb(155, 153, 153);
+    padding: 15px;
+    color: white;
+    font-size: 24px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 4;
+    user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none; 
+}
+
+#custom-prompt-box > * {
+    margin: 10px;
+}
+
+#custom-prompt-box span {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+#custom-prompt-box h2 {
+    margin-right: auto !important;
+}
+
+#custom-prompt-close {
+    width: 50px !important;
+}
+
+#custom-prompt-box textarea {
+    display: flex;
+    width: 90%;
+    height: 40%;
+    padding: 10px;
+    font-size: 24px;
+    margin: auto;
+    border-radius: 15px;
+    border: 2px solid rgb(155, 153, 153);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    resize: none;
+}
+
+#custom-prompt-box a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid rgb(255, 255, 255);
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
+    text-shadow: none;
+    cursor: pointer;
+}
+
+#custom-prompt-box a:hover {
+    opacity: 0.8;
+}
+
+#custom-prompt-btn {
+    display: none;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    bottom: 0;
+    right: 20px;
+    margin: 20px;
+    opacity: 0.5;
+}
+
+#custom-prompt-btn:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
 #health-bar {
     display: flex;
     flex-direction: row; 
@@ -123,7 +217,7 @@ html, body {
 }
 
 .heart {
-    height: 80%;
+    height: 5vw;
     margin-right: 15px;
     -webkit-user-drag: none; 
 }
@@ -139,5 +233,9 @@ html, body {
 
     #narration-box {
         width: 100%;
+    }
+
+    #custom-prompt-box {
+        width: 70%;
     }
 }

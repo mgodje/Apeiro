@@ -18,6 +18,17 @@
     <body id="game-page">
         <div class="fade in"></div>
         <h1 id="message">Your Journey Begins...</h1>
+        <div id="custom-prompt">
+            <div id="custom-prompt-box">
+                <span>
+                    <h2>Enter your custom prompt:</h2>
+                    <a id="custom-prompt-close">x</a>
+                </span>
+                <p>Use the input field to type in a custom scenario, question, or dialogue that you want the AI to respond to. Be as detailed or as vague as you like</p>
+                <textarea id="custom-prompt-input" maxlength="100" placeholder="e.g. I make an escape out of the prison."></textarea>
+                <a id="custom-prompt-submit">Submit</a>
+            </div>
+        </div>
         <div id="ui">
             <div id="left-panel">
                 <div id="health-bar">
@@ -39,6 +50,7 @@
                     <a class="option-box" id="option3">3. Listen for the sound of a rushing stream and follow its course.</a>
                     <a class="option-box" id="option4">4. Climb a nearby tree for a better view of the surrounding landscape.</a>
                 </div>
+                <img src="./css/images/custom.svg" id="custom-prompt-btn">
             </div>
         </div>
     </body>

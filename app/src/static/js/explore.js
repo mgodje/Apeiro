@@ -7,15 +7,15 @@ let narration = false;
 
 // Event listeners
 
-yesBtn.addEventListener('click', () => {
-  narration = true;
-  document.querySelector('.narrator-text').innerText = 'Do you want a Narrator? (YES)';
-});
+// yesBtn.addEventListener('click', () => {
+//   narration = true;
+//   document.querySelector('.narrator-text').innerText = 'Do you want a Narrator? (YES)';
+// });
 
-noBtn.addEventListener('click', () => {
-    narration = false;
-    document.querySelector('.narrator-text').innerText = 'Do you want a Narrator? (NO)';
-}); 
+// noBtn.addEventListener('click', () => {
+//     narration = false;
+//     document.querySelector('.narrator-text').innerText = 'Do you want a Narrator? (NO)';
+// }); 
 
 startBtn.addEventListener('click', () => {
     const prompt = userInput.value.slice(0, 100);
