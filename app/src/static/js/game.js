@@ -92,13 +92,13 @@ function updateState(sceneInfo) {
 
 function typeInBox(text, element) {
     let sentences = text.match(/[^.!?]+[.!?]+[\])'"`’”]*|.+/g);
-    for (let i = 0; i < sentences.length; i++) {
+    for (let i = 0; i < sentences.length - 1; i++) { 
         if (sentences[i].length < 150) {
-            sentences[i] = sentences[i] + ' ' + sentences[i + 1];
+            sentences[i] = sentences[i].trim() + ' ' + sentences[i + 1].trim();
             sentences.splice(i + 1, 1);
+            i--;
         }
     }
-
     let currentSentenceIndex = 0;
 
     function typeSentence() {
