@@ -1,97 +1,127 @@
-/* Basic resets specific to game.html */
-body#game-page, html#game-page {
-    width: 100%;
+html, body {
+    margin: 0;
+    padding: 0;
     height: 100%;
-    background: url('./images/black_background.png') no-repeat center center fixed;
+    background: url('./images/black_background.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    
-
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.8); 
+    text-shadow:
+        1px 1px 0 black,
+       -1px 1px 0 black,
+        1px -1px 0 black,
+       -1px -1px 0 black;
 }
 
-/* Button styles */
-#game-page .box {
-    position: absolute; /* To position buttons over the 3D canvas */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    border: none;
-    color: #000;
-    font-size: 2vh; /* Adjusted to scale with the viewport height */
-    cursor: pointer;
+#message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
     text-align: center;
-    border-radius: 5px;
-    transform-origin: center;
+    color: white;
 }
 
-#game-page .box:hover {
-    transform: scale(1.2);
-    background-color: #c1c1e9;
+#ui {
+    display: none; /* flex */
+    height: 100vh;
 }
 
-/* Specific positioning for each button */
-#game-page .health-bar {
-    background-color: #b63535bd;
-    width: 30vh; /* Adjusted to scale with the viewport height */
-    height: 12.5vh;
-    top: 10vh; /* Positioning relative to the viewport */
-    left: 10vh; /* Adjust according to the canvas layout */
+#left-panel, #right-panel {
+    flex: 0 0 20%;
+    height: 100%;
 }
 
-#game-page .volume-box {
-    background-color: #948b8bbd;
-    width: 30vh;
-    height: 7.5vh;
-    top: 85vh;
-    left: 10vh;
+#left-panel {
+    /* Optional: Styling for the left panel */
 }
 
-#game-page .narration-box {
-    background-color: #948b8bbd;
-    width: 60vh;
-    height: 14vh;
-    opacity: 0.8;
-    top: 80vh;
-    left: 35%;
-
+#right-panel {
+    /* Optional: Styling for the right panel */
 }
 
-#game-page .option1 {
-    background-color: #948b8bbd;
-    width: 18.75vh;
-    height: 6.25vh;
-    top: 20vh;
-    right: 10vh;
+#center-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
 }
 
-#game-page .option2 {
-    background-color: #948b8bbd;
-    width: 18.75vh;
-    height: 6.25vh;
-    top: 30vh;
-    right: 10vh;
+#narration-box {
+    width: 80%;
+    align-self: flex-end;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    border: 2px solid rgb(155, 153, 153);
+    padding: 15px;
+    color: white;
+    font-size: 24px;
 }
 
-#game-page .option3 {
-    background-color: #948b8bbd;
-    width: 18.75vh;
-    height: 6.25vh;
-    top: 40vh;
-    right: 10vh;
+#option-boxes {
+    display: flex;
+    flex-direction: column;
 }
 
-#game-page .option4 {
-    background-color: #948b8bbd;
-    width: 18.75vh;
-    height: 6.25vh;
-    top: 50vh;
-    right: 10vh;
+#health-bar {
+    display: flex;
+    flex-direction: row; 
+    align-self: flex-end;
+    justify-content: center;
+    width: 80%;
+    height: 100px;
+    margin: 20px;
+    /* background-color: red; */
 }
 
-#game-page .custom-box {
-    background-color: #948b8bbd;
-    width: 20vh;
-    height: 10vh;
-    top: 75vh;
-    right: 10vh;
+.option-box {
+    width: 70%;
+    align-self: flex-end;
+    color: rgba(255, 255, 255, 0.719);
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    border: 2px solid rgb(155, 153, 153);
+    transition: all 0.15s ease;
+    padding: 10px;
+    margin: 5px;
+    user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none; 
+}
+
+.option-box:hover {
+    color: white;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+}
+
+.option-box:active {
+    padding: 10px;
+}
+
+.heart {
+    height: 80%;
+    margin-right: 15px;
+    -webkit-user-drag: none; 
+}
+
+.dead {
+    opacity: 0.5;
+}
+
+@media only screen and (max-width: 1200px) {
+    .option-box, #narration-box {
+        font-size: 20px;
+    }
+
+    #narration-box {
+        width: 100%;
+    }
 }

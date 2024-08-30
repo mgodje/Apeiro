@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMPM 146 Final</title>
-    <link rel="stylesheet" href="./css/main.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Apeiro | Game</title>
+        <link rel="stylesheet" href="./css/main.css">
+        <script src="./js/game.js" defer></script>
+        <script type="text/javascript" defer>
+            window.addEventListener("beforeunload", function (e) {
+                var confirmationMessage = "Are you sure you want to leave this page? Any unsaved changes will be lost.";
+                e.returnValue = confirmationMessage;
+                return confirmationMessage;
+            });
+        </script>
+    </head>
 
-<body id="game-page">
-    <canvas class="webgl"></canvas>
-
-    <section class="text">
-        <div class="effect">
-            <h1 class="typing">Your Journey Begins...</h1>
+    <body id="game-page">
+        <h1 id="message">Your Journey Begins...</h1>
+        <div id="ui">
+            <div id="left-panel">
+                <div id="health-bar">
+                    <img class="heart" draggable="false" src="./css/images/heart.png">
+                    <img class="heart" draggable="false" src="./css/images/heart.png">
+                    <img class="heart" draggable="false" src="./css/images/heart.png">
+                    <img class="heart" draggable="false" src="./css/images/heart.png">
+                </div>
+            </div>
+            <div id="center-panel">
+                <div id="narration-box">
+                    &emsp;You find yourself standing at the edge of a bamboo forest, the air thick with the scent of damp earth and blooming cherry blossoms. Sunlight filters through the emerald canopy, painting dappled patterns on the moss-covered ground. Birdsong fills the air, a melodious symphony unlike anything you've ever heard. Welcome to the heart of an anime-style forest in Japan, where magic and wonder hide behind every towering tree.\n\nYou've been drawn here by a whisper on the wind, a promise of adventure. But which path will you choose?
+                </div>
+            </div>
+            <div id="right-panel">
+                <div id="option-boxes">
+                    <a class="option-box" id="option1">1. Follow a winding dirt path that disappears into the thick foliage.</a>
+                    <a class="option-box" id="option2">2. Head towards a small, moss-covered shrine nestled beneath a giant wisteria tree.</a>
+                    <a class="option-box" id="option3">3. Listen for the sound of a rushing stream and follow its course.</a>
+                    <a class="option-box" id="option4">4. Climb a nearby tree for a better view of the surrounding landscape.</a>
+                </div>
+            </div>
         </div>
-    </section>
-
-    <!-- Buttons -->
-    <button class="box health-bar">Health Bar</button>
-    <button class="box volume-box">Volume</button>
-    <button class="box narration-box">Narration</button>
-    <button class="box option-box option1">Option 1</button>
-    <button class="box option-box option2">Option 2</button>
-    <button class="box option-box option3">Option 3</button>
-    <button class="box option-box option4">Option 4</button>
-    <button class="box custom-box">Custom</button>
-</body>
+    </body>
 </html>
