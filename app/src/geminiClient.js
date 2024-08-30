@@ -2,7 +2,6 @@ require('dotenv').config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
 const API_KEY = process.env.GOOGLE_API_KEY;
-console.log(API_KEY);
 const imageGenerator = require('./imageGenerator');
 const audioGenerator = require('./audioGenerator');
 let scenes = [];
@@ -224,16 +223,33 @@ async function endStory(value, text) {
  * @returns {Promise<array>} Scenes
  */
 async function continueStory(userPrompt) {
-  const scene = findLatestScene(); 
-  const chat = model.startChat();
-  let result = await chat.sendMessage(
-    `You are the host of a decision-making game, where you take the user 
+  const sceneData = allScenes();
+  const startingPrompt = `You are the host of a decision-making game, where you take the user 
     through an adventure using this sentence/words: ${userPrompt}.
     Talk in 3rd person and only refer to the player as 'You'.
     Only produce 4 decisions. Format the output where before you produce the decisions, 
     state this: Here are your options: 1. decision.\n 2. decision.\n etc. End each decision with a period.
-    Remember that you must produce decisions.
-
+    Remember that you must produce decisions.`;
+  let historyData = [{
+    role: 'user',
+    parts: [{text: startingPrompt}]
+  }];
+  if (sceneData) {
+    for (let i = 0; i < sceneData.length; i++) {
+      historyData.push({
+        role: 'model',
+        parts: [{text: sceneData[i].response}]
+      });
+      historyData.push({
+        role: 'user',
+        parts: [{text: sceneData[i].pickedDecision}]
+      });
+    };
+  }
+  const scene = findLatestScene(); 
+  const chat = model.startChat({history: historyData});
+  let result = await chat.sendMessage(
+    `
     Your response should be based on the previous scene.
     Here is the previous scene: ${scene.scene}.
     For the previous scene, the user made this decision: ${scene.pickDecision}.

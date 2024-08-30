@@ -15,14 +15,15 @@ optionBoxes.forEach((box, index) => {
 
 if (storyData) {
     let data = JSON.parse(storyData);
-    console.log(data)
+    setTimeout(() => {
+        fadeOut();
+    }, 1000);
     if (!data.started) {
         data.started = true;
         localStorage.setItem('storyData', JSON.stringify(data));
-        setTimeout(() => {
-            fadeOut();
-        }, 1000);
         createStory(data.prompt);
+    } else {
+        currentScene();
     }
 }
 
@@ -37,6 +38,14 @@ function createStory(prompt) {
         res => res.json()
     ).then(data => {
         updateState(data);;
+    });
+}
+
+function currentScene() {
+    fetch('/v0/current-scene').then(
+        res => res.json()
+    ).then(data => {
+        updateState(data);
     });
 }
 
