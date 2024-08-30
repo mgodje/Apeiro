@@ -1,7 +1,8 @@
 require('dotenv').config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
-const API_KEY = 'AIzaSyARcPSb55sTOi8suBrc0RUjWlq3DRegaeU';
+const API_KEY = process.env.GOOGLE_API_KEY;
+console.log(API_KEY);
 const imageGenerator = require('./imageGenerator');
 const audioGenerator = require('./audioGenerator');
 let scenes = [];

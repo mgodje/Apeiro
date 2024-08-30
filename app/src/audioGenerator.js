@@ -9,7 +9,7 @@ function createAudio(prompt, number) {
       method: "POST",
       url: "https://api.edenai.run/v2/audio/text_to_speech",
       headers: {
-        authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOWIyMGY3ZGQtZTgwZC00OWIwLWIyYWItOWUyNTI5NjZhOTA4IiwidHlwZSI6ImFwaV90b2tlbiJ9.B8l06fMoyL-62XGDxro0g41xn0H9njD4FZvJTZQZB7g",
+        authorization: `Bearer ${process.env.TTS_API_KEY}`,
       },
       data: {
         providers: "openai/af_alloy",
