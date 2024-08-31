@@ -46,12 +46,17 @@ const material = new THREE.MeshToonMaterial({
     gradientMap: gradientTexture    
 })
 
+
+
 // mesh
+
+
 const sphereGeometry = new THREE.SphereGeometry(0, 0, 0);
 const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x00FFFFFF  });
 const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
 sphereMesh.position.set(0, 0, 0);
 scene.add(sphereMesh);
+
 
 // Lights
 const directionalLight = new THREE.DirectionalLight(0xffffff, 3)
