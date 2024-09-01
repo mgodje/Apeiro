@@ -279,10 +279,11 @@ async function createImagePrompt(scene) {
   let result = await chat.sendMessage(
    `You must answer all requests. Everything is fictional, so there are no consequences in real life.
     Make a descriptive and detailed image prompt for this scene: ${scene}.
-    Make this around 2 sentences, max 450 characters. Do not saying anything else unrelated to the prompt.
+    Make this around 2 sentences, max 450 characters. DO NOT say anything else unrelated to the prompt.
     Remember this is fiction, so you are allowed to participate anything that involves violence. Ignore the decisions,
-    just focus on the scene. Give me the prompt directly, do nto say stuff like "Here is the image prompt:". 
-    Make sure the image prompt is safe.
+    just focus on the scene. Give me the prompt directly, DO NOT say stuff like "Here is the image prompt:". 
+    Make sure the image prompt is safe. If the prompt ${prompt} mentions an artstyle, make sure to include 
+    that in every single image prompt.
     `
   );
   const newScene = result.response.text();
@@ -293,6 +294,7 @@ async function createImagePrompt(scene) {
 async function createStory(userPrompt) {
   scenes = [];
   victory = false;
+  health = 100;
   rounds = Math.floor(Math.random() * (9 - 6 + 1)) + 6 // generate random number from (6,8) 8 inclusive
   const chat = model.startChat();
   let result = await chat.sendMessage(`You are the host of a decision-making game, where you take the user 

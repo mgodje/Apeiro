@@ -84,6 +84,12 @@ function updateState(sceneInfo) {
         optionBoxes[index].style.display = 'none';
     });
 
+    if (sceneInfo.decisions.length === 0) {
+        optionBoxes.forEach(box => {
+            box.style.display = 'none';
+        });
+    }
+
     body.style.background = `url(${sceneInfo.image})`;
     body.style.backgroundSize = 'cover';
     body.style.backgroundPosition = 'center';
@@ -155,6 +161,8 @@ function typeInBox(text, element, decisionsLength) {
                             return;   
                         }
                         optionBoxes.forEach((box, index) => {
+                            if (decisionsLength === 0) 
+                                return;
                             box.style.display = 'block';
                         });
                         customPromptBtn.style.display = 'block';
