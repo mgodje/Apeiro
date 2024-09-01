@@ -1,0 +1,58 @@
+<!--
+link with <a> tag</a>
+
+resources:
+https://www.w3schools.com/tags/tag_a.asp
+https://stackoverflow.com/questions/24543101/create-subpage-in-html
+https://stackoverflow.com/questions/31525409/how-do-i-link-two-html-pages-with-a-button
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apeiro | Explore</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="./js/explore.js" defer></script>
+</head>
+
+<body id="cabin">
+    <section class="section">
+        <div class="effect">
+        <h1 class="typing" style="font-family: 'IM Fell English', serif;">Create Game</h1>
+        <div class="prompt-container">
+            <label for="userInput">
+                <span class="typing">Start Your Story:</span>
+            </label>
+            <textarea id="userInput" class="prompt-box" placeholder="e.g. An adventure in a dark forest in anime artstyle..." maxlength="100"></textarea>
+        </div>
+    </div>
+                
+                <!-- <div class="narrator-container">
+                    <span class="typing narrator-text">Do you want a Narrator? <br></span>
+                    <button class="button_yes button2">Yes</button>
+                    <button class="button_no button3">No</button>
+                </div>
+                 -->
+                <div class="start-container">
+                    <span class="typing">Begin Game By Clicking <span class="highlight">Start</span> Below</span>
+                    <!-- <a href="/game"> -->
+                    <button class="button button_start">Start</button>
+                    <!-- </a> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section class="section">
+        <div>
+            <span class="typing3">Back to Homepage?</span>
+            <a href="/">
+                <button class=" button button1">Return to Homepage</button>
+            </a>
+        </div>
+    </section>
+</body>
