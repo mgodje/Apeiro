@@ -20,3 +20,10 @@ npm run dev
 # Build for production in the dist/directory.
 npm run build
 ```
+
+## About Project
+Apeiro is an AI-powered visual novel that offers open-ended storytelling through player choices. Each decision helps shape the narrative, creating opportunities to explore different plots and story directions.
+
+Players are presented with choices that determine what happens next. As they make decisions, the AI generates new developments, allowing the story to evolve through their interactions.
+
+The project explores how generative AI can support interactive storytelling, giving players an active role in building their own narrative experiences.
